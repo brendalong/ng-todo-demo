@@ -3,7 +3,7 @@
   "description": "",
   "main": "index.js",
   "license": "MIT",
-  "homepage": "https://github.com/zoeames/ng-todo-demo",
+  "homepage": "https://github.com/joeshep/ng-todo-demo",
   "moduleType": [],
   "ignore": [
     "**/.*",

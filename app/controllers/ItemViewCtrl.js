@@ -1,3 +1,4 @@
+"use strict";
 app.controller("ItemViewCtrl", function($scope, $routeParams, itemStorage){
     $scope.items = [];
     $scope.selectedItem = {};
