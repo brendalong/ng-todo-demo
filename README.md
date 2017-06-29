@@ -2,23 +2,18 @@
 
 
 ### Description:  
-This app allows users to log in and create todo itmes.  Once created the items can be deleated, edited, and marked complete.  
+This app allows users to log in and create todo items.  Once created the items can be deleted, edited, and marked complete.  
 
 ### Screenshots
-![Image1](https://raw.githubusercontent.com/zoeames/ng-todo-demo/master/img/todo.png)
+![Image1](todo.png)
 
 ### To run:
 ```
 $ cd lib /
 $ npm install
 $ bower install
-$ gulp
-$ cd ..
-$ http-server -p 9999
+$ grunt
 ```
-
-Your app should now be running on [localhost:9999](http://localhost:9999/).
-
 
 
 ### Contributors
