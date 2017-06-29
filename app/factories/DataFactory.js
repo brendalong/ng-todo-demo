@@ -1,8 +1,7 @@
 "use strict";
-app.factory("itemStorage", function($q, $http, firebaseURL, AuthFactory){
+app.factory("DataFactory", function($q, $http, firebaseURL, AuthFactory){
 	
 	var getItemList = function(){
-        console.log("hello firebase getItemsList");
 		var items = [];
         let user = AuthFactory.getUser();
 		return $q(function(resolve, reject){
@@ -94,7 +93,7 @@ app.factory("itemStorage", function($q, $http, firebaseURL, AuthFactory){
         });
 	};
 
-		var updateCompletedStatus = function(newItem){
+	var updateCompletedStatus = function(newItem){
         return $q(function(resolve, reject) {
             $http.put(
                 firebaseURL + "items/" + newItem.id + ".json",
@@ -119,20 +118,6 @@ app.factory("itemStorage", function($q, $http, firebaseURL, AuthFactory){
 
 
 
-	return {updateCompletedStatus:updateCompletedStatus, updateItem:updateItem, getSingleItem:getSingleItem, getItemList:getItemList, deleteItem:deleteItem, postNewItem:postNewItem};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	return {updateCompletedStatus, updateItem, getSingleItem, getItemList, deleteItem, postNewItem};
 
 });

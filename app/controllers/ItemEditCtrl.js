@@ -1,19 +1,28 @@
 "use strict";
-app.controller("ItemEditCtrl", function($scope, $location, $routeParams, itemStorage){
-    $scope.title = "Edit Item";
-    $scope.submitButtonText = "Update";
-    $scope.newTask = {};
+app.controller("ItemEditCtrl", function($scope, $location, $routeParams, DataFactory){
+    
+    $scope.item = {
+    assignedTo: "",
+    dependencies: "",
+    dueDate: "",
+    urgency: "",
+    task: "",
+    isCompleted: ""
+  };
 
-    itemStorage.getSingleItem($routeParams.itemId)
-        .then(function successCallback(response){
-            $scope.newTask=response;
-        });
-      
-    $scope.addNewItem = function(){
-        itemStorage.updateItem($routeParams.itemId, $scope.newTask)
-            .then(function successCallback(response) {
-                console.log(response);
-                $location.url("/items/list");
-            });
-    };
+    DataFactory.getTask($routeParams.itemId)
+    .then( (stuff) => {
+        $scope.item = stuff;
+        $scope.item.id = $routeParams.itemId;
+    });
+
+  $scope.submitTask = function() {
+    // stuff goes here
+    DataFactory.editTask($routeParams.itemId, $scope.item)
+    .then( (response) => {
+        $location.path("/item-list");
+    });
+    console.log("task", $scope.item);
+    console.log("You clicked the edit button!");
+  };
 });

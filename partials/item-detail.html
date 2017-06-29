@@ -1,0 +1,10 @@
+<h1>{{item.task}}</h1>  
+
+<button class="btn btn-info"><a ng-href="#/items/{{item.id}}/edit">Edit</a></button>
+
+<h2>Assigned To: {{item.assignedTo}}</h2>
+<h2>Due Date: {{item.dueDate}}</h2>
+<h2>Dependencies: {{item.dependencies}}</h2>
+<h2>Location: {{item.location}}</h2>
+<h2>Urgency: {{item.urgency}}</h2>
+<h2>Completed ?: {{(item.isCompleted ? "yes" : "no")}}</h2>

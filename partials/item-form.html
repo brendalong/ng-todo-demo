@@ -1,0 +1,30 @@
+<h1>{{title}}</h1>
+<form>
+    <div class="form-group">
+        <label>Task Description</label>
+        <input type="text" class="form-control" placeholder="Some important task" ng-model="newItem.task"/>
+    </div>
+    <div class="form-group">
+        <label>Due Date</label>
+        <input type="text" class="form-control" placeholder="1/12/18" ng-model="newItem.dueDate"/>
+    </div>
+    <div class="form-group">
+        <label>Assigned To</label>
+        <input type="text" class="form-control" placeholder="Brenda" ng-model="newItem.assignedTo"/>
+    </div>
+    <div class="form-group">
+        <label>Location</label>
+        <input type="text" class="form-control" placeholder="Outer Space" ng-model="newItem.location"/>
+    </div>
+    <div class="form-group">
+        <label>Urgency</label>
+        <input type="text" class="form-control" placeholder="Low" ng-model="newItem.urgency"/>
+    </div>
+    <div class="form-group">
+        <label>Dependencies</label>
+        <input type="text" class="form-control" placeholder="sword, cat, blanket" ng-model="newItem.dependencies"/>
+    </div>
+    <div class="text-center">
+        <button class="btn btn-default" ng-click="addNewItem()">{{submitButtonText}}</button>    
+    </div>
+</form>
