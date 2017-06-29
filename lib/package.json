@@ -1,4 +1,8 @@
 {
+  "description": "Demo CRUD app",
+  "main": "index.html",
+  "author": "NSS",
+  "license": "ISC",
   "name": "angular-to-do",
   "version": "0.1.0",
   "devDependencies": {
@@ -19,4 +23,5 @@
     "angular-route": "^1.6.4",
     "firebase": "^4.1.3"
   }
+  
 }
