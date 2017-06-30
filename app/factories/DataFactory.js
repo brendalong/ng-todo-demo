@@ -1,123 +1,78 @@
 "use strict";
-app.factory("DataFactory", function($q, $http, firebaseURL, AuthFactory){
-	
-	var getItemList = function(){
-		var items = [];
-        let user = AuthFactory.getUser();
-		return $q(function(resolve, reject){
-			// $http.get(`${firebaseURL}items.json?orderBy="uid"&equalTo="${user.uid}"`)
-			$http.get(`${firebaseURL}.json`)
-            
-            	.success(function(itemObject){
-					var itemCollection = itemObject;
-					Object.keys(itemCollection).forEach(function(key){
-						itemCollection[key].id=key;
-						items.push(itemCollection[key]);
-					});
-					resolve(items);
-				})
-				.error(function(error){
-					reject(error);
-				});
-		});
-	};
+app.factory("DataFactory", function($q, $http, FBCreds) {
 
-	var deleteItem = function(itemId){
-		return $q(function(resolve, reject){
-			$http
-            	.delete(firebaseURL + "items/" + itemId + ".json")
-            	.success(function(objectFromFirebase){
-            		resolve(objectFromFirebase);
-            	});
-		});
-	};
-
-	var postNewItem = function(newItem){
-        let user = AuthFactory.getUser();
-        console.log("user", user);
-        return $q(function(resolve, reject) {
-            $http.post(
-                firebaseURL + "items.json",
-                JSON.stringify({
-                    assignedTo: newItem.assignedTo,
-                    dependencies: newItem.dependencies,
-                    dueDate: newItem.dueDate,
-                    isCompleted: newItem.isCompleted,
-                    location: newItem.location,
-                    task: newItem.task,
-                    urgency: newItem.urgency,
-                    uid: user.uid
-                })
-            )
-            .success(
-                function(objectFromFirebase) {
-                    resolve(objectFromFirebase);
-                }
-            );
+    const getItemList = (user) => {
+        let tasks = [];
+        console.log("myURL", `${FBCreds.databaseURL}/items.json?orderBy="uid"&equalTo="${user}"`);
+        return $q( (resolve, reject) => {
+          $http.get(`${FBCreds.databaseURL}/items.json?orderBy="uid"&equalTo="${user}"`)
+          .then( (itemObj) => {
+            let itemCollection = itemObj.data;
+            console.log("itemCollection", itemCollection);
+           Object.keys(itemCollection).forEach( (key) => {
+              itemCollection[key].id = key;
+              tasks.push(itemCollection[key]);
+            });
+            resolve(tasks);
+            })
+          .catch( (error) => {
+            reject(error);
+          });
         });
-	};
+    };
 
-	var getSingleItem = function(itemId){
-		return $q(function(resolve, reject){
-			$http.get(firebaseURL + "items/"+ itemId +".json")
-				.success(function(itemObject){
-					resolve(itemObject);
-				})
-				.error(function(error){
-					reject(error);
-				});
-		});
-	};
 
-	var updateItem = function(itemId, newItem){
-        let user = AuthFactory.getUser();
-        return $q(function(resolve, reject) {
-            $http.put(
-                firebaseURL + "items/" + itemId + ".json",
-                JSON.stringify({
-                    assignedTo: newItem.assignedTo,
-                    dependencies: newItem.dependencies,
-                    dueDate: newItem.dueDate,
-                    isCompleted: newItem.isCompleted,
-                    location: newItem.location,
-                    task: newItem.task,
-                    urgency: newItem.urgency,
-                    uid: user.uid
-                })
-            )
-            .success(
-                function(objectFromFirebase) {
-                    resolve(objectFromFirebase);
-                }
-            );
+    const deleteItem = ( itemId ) => {
+        return $q ( (resolve, reject) => {
+          $http.delete(`${FBCreds.databaseURL}/items/${itemId}.json`)
+          .then( (response) => {
+            resolve(response);
+          })
+          .catch( (error) => {
+            reject(error);
+          });
         });
-	};
+    };
 
-	var updateCompletedStatus = function(newItem){
-        return $q(function(resolve, reject) {
-            $http.put(
-                firebaseURL + "items/" + newItem.id + ".json",
-                JSON.stringify({
-                    assignedTo: newItem.assignedTo,
-                    dependencies: newItem.dependencies,
-                    dueDate: newItem.dueDate,
-                    isCompleted: newItem.isCompleted,
-                    location: newItem.location,
-                    task: newItem.task,
-                    urgency: newItem.urgency
-                })
-            )
-            .success(
-                function(objectFromFirebase) {
-                    resolve(objectFromFirebase);
-                }
-            );
+    const addItem = ( newObj ) => {
+      let object = JSON.stringify(newObj);
+      return $http.post(`${FBCreds.databaseURL}/items.json`, object)
+      .then ( (itemId) => {
+        return itemId;
+      }, (error) => {
+        let errorCode = error.code;
+        let errorMessage = error.message;
+        console.log("error", errorCode, errorMessage);
+      });
+    };
+
+
+    const getSingleItem = ( itemId ) => {
+        return $q( (resolve, reject) => {
+          $http.get(`${FBCreds.databaseURL}/items/${itemId}.json`)
+          .then( (itemObj) => {
+            resolve(itemObj.data);
+          })
+          .catch( (error) => {
+            reject(error);
+          });
         });
-	};
+    };
 
+    const updateItem = ( itemId, editedObj ) => {
+        console.log("updateItem", itemId, editedObj);
+        return $q( (resolve, reject) => {
+          let newObj = JSON.stringify(editedObj);
+          $http.patch(`${FBCreds.databaseURL}/items/${itemId}.json`, newObj)
+          .then( (itemObj) => {
+            resolve(itemObj);
+          })
+          .catch( (error) => {
+            reject(error);
+          });
+        });
+      };
 
-
-
-	return {updateCompletedStatus, updateItem, getSingleItem, getItemList, deleteItem, postNewItem};
+	return {updateItem, getSingleItem, getItemList, deleteItem, addItem};
 
 });

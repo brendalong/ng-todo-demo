@@ -36,19 +36,19 @@ app.config( ($routeProvider) => {
     showSearch: true,
     resolve: {isAuth}
   })
-  .when('/item/new', {
+  .when('/item/newItem', {
     templateUrl: 'partials/item-form.html',
-    controller: 'AddItemCtrl',
+    controller: 'ItemNewCtrl',
     resolve: {isAuth} 
   })
   .when('/item/:itemId', {
     templateUrl: 'partials/item-detail.html',
-    controller: 'ItemDetailCtrl',
+    controller: 'ItemViewCtrl',
     resolve: {isAuth}
   })
   .when('/item/:itemId/edit', {
     templateUrl: 'partials/item-form.html',
-    controller: 'EditItemCtrl',
+    controller: 'ItemEditCtrl',
     resolve: {isAuth}
   })
   .otherwise('/');

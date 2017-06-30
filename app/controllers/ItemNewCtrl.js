@@ -1,8 +1,14 @@
 "use strict";
-app.controller("ItemNewCtrl", function($scope, $location, DataFactory){
+app.controller("ItemNewCtrl", function($scope, $location, DataFactory, AuthFactory, $rootScope){
+
+    let user = AuthFactory.getUser();
+    $rootScope.showSearch = false;
+
     $scope.title = "New Item";
     $scope.submitButtonText = "Add New Item";
-    $scope.newItem = {
+
+    //be sure to add the user and set new item completed to false
+    $scope.item = {
         assignedTo: "",
         dependencies:"",
         dueDate: "",
@@ -10,11 +16,13 @@ app.controller("ItemNewCtrl", function($scope, $location, DataFactory){
         location: "",
         task:"",
         urgency:"",
-        uid:""
+        uid: user
     };
-      
-    $scope.addNewItem = function(){
-        DataFactory.postNewItem($scope.newItem)
+    
+    //use the same function name in ItemNewCtrl and ItemEditCtrl
+    //allows double use of form
+    $scope.submitTask = function(){
+        DataFactory.addItem($scope.item)
             .then(function successCallback(response) {
                 console.log(response);
                 $location.url("/item-list");

@@ -1,10 +1,16 @@
-<h1>{{item.task}}</h1>  
+<h2>Task Details</h2>
+<div class="col-xs-12">
 
-<button class="btn btn-info"><a ng-href="#/items/{{item.id}}/edit">Edit</a></button>
+	<h3>{{item.task}}</h3>
 
-<h2>Assigned To: {{item.assignedTo}}</h2>
-<h2>Due Date: {{item.dueDate}}</h2>
-<h2>Dependencies: {{item.dependencies}}</h2>
-<h2>Location: {{item.location}}</h2>
-<h2>Urgency: {{item.urgency}}</h2>
-<h2>Completed ?: {{(item.isCompleted ? "yes" : "no")}}</h2>
+	<ul class="list-group">
+	    <li class="list-group-item"><strong>Assigned To: </strong>{{item.assignedTo}}</li>
+	    <li class="list-group-item"><strong>Due Date: </strong>{{item.dueDate}}</li>
+	    <li class="list-group-item"><strong>Dependencies: </strong>{{item.dependencies}}</li>
+	    <li class="list-group-item"><strong>Location: </strong>{{item.location}}</li>
+	    <li class="list-group-item"><strong>Urgency: </strong>{{item.urgency}}</li>
+	    <li class="list-group-item"><strong>Completed: </strong>{{item.isCompleted ? "yes" : "no"}}</li>
+	</ul>
+
+	<button class="btn btn-info"><a ng-href="#!/item/{{item.id}}/edit">Edit</a></button>
+</div>

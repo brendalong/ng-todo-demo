@@ -20,7 +20,7 @@ app.controller("ItemViewCtrl", function($scope, $routeParams, DataFactory){
     $scope.getItem = function() {
     // stuff goes here
         console.log("get the item'");
-        DataFactory.getItem($routeParams.itemId)
+        DataFactory.getSingleItem($routeParams.itemId)
         .then( (stuff) => {
             $scope.item = stuff;
             $scope.item.id = $routeParams.itemId;

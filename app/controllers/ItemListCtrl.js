@@ -1,7 +1,8 @@
 "use strict";
 
-app.controller("ItemListCtrl", function($scope, $location, DataFactory, $rootScope){
-    $scope.searchText = SearchTermData;
+app.controller('ItemListCtrl', function($scope, DataFactory, $location, AuthFactory, FilterFactory, $rootScope) {
+    
+    $scope.searchText = FilterFactory;
     $rootScope.showSearch = true;
 
     let user = AuthFactory.getUser();
@@ -9,10 +10,12 @@ app.controller("ItemListCtrl", function($scope, $location, DataFactory, $rootSco
     $scope.items = [];
 
     //automatically runs when controller is loaded
-    DataFactory.getItemList(user).then( (itemCollection) => {
-        console.log("itemCollection from promise", itemCollection);
-        $scope.items = itemCollection;
-    });
+    $scope.getItemList = function(){
+        DataFactory.getItemList(user).then( (itemCollection) => {
+            console.log("itemCollection from promise", itemCollection);
+            $scope.items = itemCollection;
+        });
+    };
 
     $scope.itemDelete = function(itemId){
         console.log("itemId", itemId);
@@ -23,21 +26,15 @@ app.controller("ItemListCtrl", function($scope, $location, DataFactory, $rootSco
         });
     };
 
-    $scope.inputChange = function(item){
-        DataFactory.updateCompletedStatus(item)
-            .then(function(response){
-                console.log(response);
-            });
-    };
-
     $scope.updateComplete = function(whichOne){
         let tmpObj = {isCompleted:true};
-        DataFactory.editTask(whichOne, tmpObj)
+        DataFactory.updateItem(whichOne, tmpObj)
         .then( () => {
+            console.log("then updateComplete");
             $scope.getItemList();
         });
   };
 
-
+  $scope.getItemList();
 
 });

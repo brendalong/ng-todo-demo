@@ -53,11 +53,11 @@ app.controller("AuthCtrl", function ($scope, $window, AuthFactory, $location) {
       .loginUser($scope.account)
       .then(() => {
         //Option One
-        // $location.path("/task-list");
+        // $location.path("/item-list");
         //need to update the view
         // $scope.$apply();
         //Option TWO
-        $window.location.href = "#!/task-list";
+        $window.location.href = "#!/item-list";
       });
   };
 
@@ -69,7 +69,7 @@ app.controller("AuthCtrl", function ($scope, $window, AuthFactory, $location) {
         console.log("logged in user:", user);
         //Once logged in, go to another view
         //google takes care of refresh view
-        $location.path("/task-list"); //path does not get a #!
+        $location.path("/item-list"); //path does not get a #!
         $scope.$apply();
       }).catch(function (error) {
         // Handle the Errors.

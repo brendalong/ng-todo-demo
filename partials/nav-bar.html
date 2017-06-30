@@ -8,9 +8,10 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Great TODO</a>
+      <a class="navbar-brand" href="#!/item-list">Great TODO's</a>
     </div>
 
+    <!-- demonstration of two controllers sharing a factory -->
     <div class="navbar-form navbar-left input-group" ng-show="isLoggedIn">
         <div class="input-group" ng-show="showSearch">
           <span class="input-group-addon glyphicon glyphicon-search" id="basic-addon1"></span>
@@ -21,10 +22,10 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        <li><a ng-show="isLoggedIn" ng-href="#!/task-list">Show All</a></li>
-        <li><a ng-show="isLoggedIn" ng-href="#!/tasks/newtask">Add Task</a></li>
+        <li><a ng-show="isLoggedIn" ng-href="#!/item-list">Show All</a></li>
+        <li><a ng-show="isLoggedIn" ng-href="#!/item/newItem">Add Task</a></li>
         <li><a ng-show="!isLoggedIn">Login</a></li>
-        <li><a  ng-show="isLoggedIn" ng-click="logout()">Logout</a></li>
+        <li><a ng-show="isLoggedIn" ng-click="logout()" >Logout</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
 

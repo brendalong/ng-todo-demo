@@ -1,30 +1,30 @@
-<h1>{{title}}</h1>
+<h3>{{title}}</h3>
 <form>
     <div class="form-group">
         <label>Task Description</label>
-        <input type="text" class="form-control" placeholder="Some important task" ng-model="newItem.task"/>
+        <input type="text" class="form-control" placeholder="Some important task" ng-model="item.task"/>
     </div>
     <div class="form-group">
         <label>Due Date</label>
-        <input type="text" class="form-control" placeholder="1/12/18" ng-model="newItem.dueDate"/>
+        <input type="text" class="form-control" placeholder="1/12/18" ng-model="item.dueDate"/>
     </div>
     <div class="form-group">
         <label>Assigned To</label>
-        <input type="text" class="form-control" placeholder="Brenda" ng-model="newItem.assignedTo"/>
+        <input type="text" class="form-control" placeholder="Brenda" ng-model="item.assignedTo"/>
     </div>
     <div class="form-group">
         <label>Location</label>
-        <input type="text" class="form-control" placeholder="Outer Space" ng-model="newItem.location"/>
+        <input type="text" class="form-control" placeholder="Outer Space" ng-model="item.location"/>
     </div>
     <div class="form-group">
         <label>Urgency</label>
-        <input type="text" class="form-control" placeholder="Low" ng-model="newItem.urgency"/>
+        <input type="text" class="form-control" placeholder="Low" ng-model="item.urgency"/>
     </div>
     <div class="form-group">
         <label>Dependencies</label>
-        <input type="text" class="form-control" placeholder="sword, cat, blanket" ng-model="newItem.dependencies"/>
+        <input type="text" class="form-control" placeholder="sword, cat, blanket" ng-model="item.dependencies"/>
     </div>
     <div class="text-center">
-        <button class="btn btn-default" ng-click="addNewItem()">{{submitButtonText}}</button>    
+        <button class="btn btn-default" ng-click="submitTask()">{{submitButtonText}}</button>    
     </div>
 </form>
