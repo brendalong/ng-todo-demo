@@ -1,23 +1,21 @@
-# Todo App
+# ng-todo-demo
+Live from Nashville, NG-TODO
 
-
-### Description:  
-This app allows users to log in and create todo items.  Once created the items can be deleted, edited, and marked complete.  
-
-### Screenshots
-![Image1](todo.png)
-
-### To run:
+* Create app/values/fb-creds.js and inlcude firebase login:
 ```
-$ cd lib /
-$ npm install
-$ bower install
-$ grunt
+app.constant('FBCreds', {
+    apiKey: "reallyLongNumber",
+    authDomain: "your-database.firebaseapp.com",
+    databaseURL: "https://your-database.firebaseio.com"
+});
 ```
 
+* cd into lib folder and run `npm install`
+* within lib folder run grunt
+* Watch the magic unfold!
 
-### Contributors
+#### with a little help from my friends
+
+- [Joe Shep](https://github.com/JoeShep)
 - [Zoe Ames](https://github.com/zoeames)
-
-### License
-[MIT](LICENSE)
+- [NSS](https://github.com/nashville-software-school) Cohort 19

@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zoeames/ng-todo-demo.git"
+    "url": ""
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/zoeames/ng-todo-demo/issues"
+    "url": ""
   },
-  "homepage": "https://github.com/zoeames/ng-todo-demo#readme",
+  "homepage": "",
   "dependencies": {},
   "devDependencies": {
     "gulp": "^3.9.1",
